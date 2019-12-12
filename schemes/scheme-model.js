@@ -36,10 +36,21 @@ function update(changes, id) {
         });
 }
 
+async function remove(id) {
+  const deleted = await db("schemes").where({ id })
+  if (deleted) {
+      db("schemes").where({ id }).del();
+      return deleted
+  } else {
+      return null
+  }
+}
+
 module.exports = {
   find,
   findById,
   findSteps,
   add,
-  update
+  update,
+  remove
 };
