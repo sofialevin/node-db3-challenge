@@ -4,10 +4,13 @@ function find() {
   return db('schemes');
 }
 
-function findById(id) {
-  return db('schemes')
-    .where({ id })
-    .first()
+async function findById(id) {
+  const scheme = await db("schemes").where({ id }).first()
+  if (scheme) {
+      return scheme
+  } else {
+      return null
+  }
 }
 
 function findSteps(id) {
