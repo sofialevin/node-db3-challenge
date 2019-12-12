@@ -27,9 +27,19 @@ function add(scheme) {
       });
 }
 
+function update(changes, id) {
+  return db('schemes')
+      .where({ id })
+      .update(changes)
+      .then(() => {
+        return findById(id);
+        });
+}
+
 module.exports = {
   find,
   findById,
   findSteps,
-  add
+  add,
+  update
 };
